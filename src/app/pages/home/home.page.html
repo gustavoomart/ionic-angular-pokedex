@@ -1,20 +1,52 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>POKEDEX (Angular + Ionic)</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/favorites']">
+        <ion-icon slot="icon-only" name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding ion-content">
+  
+  <app-pokemon-grid
+    [pokemons]="pokemons"
+    [favoriteStatus]="favoritesService.favoriteStatus"
+    (cardClick)="onCardClick($event)"
+    (favoriteToggle)="onFavoriteToggle($event)">
+  </app-pokemon-grid>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="pagination-container">
+    <ion-button 
+      (click)="loadPokemonsPage(currentPage - 1)" 
+      [disabled]="currentPage === 0" 
+      shape="round" 
+      size="small"
+      style="margin-right: 16px;">
+      <ion-icon slot="icon-only" name="caret-back-outline"></ion-icon>
+    </ion-button>
+
+    <ion-input 
+      type="number" 
+      [value]="currentPage + 1" 
+      (ionChange)="onPageInputChange($event)" 
+      min="1"
+      [max]="totalPages" 
+      style="width: 36px; text-align: center;">
+    </ion-input>
+
+    <span>/</span>
+    <span style="margin-left: 16px; margin-right: 16px;">{{ totalPages }}</span>
+
+    <ion-button 
+      (click)="loadPokemonsPage(currentPage + 1)" 
+      [disabled]="currentPage + 1 >= totalPages" 
+      shape="round"
+      size="small">
+      <ion-icon slot="icon-only" name="caret-forward-outline"></ion-icon>
+    </ion-button>
   </div>
+
 </ion-content>

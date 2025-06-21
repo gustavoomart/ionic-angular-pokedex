@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>FAVORITES</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding ion-content">
+  
+  <app-pokemon-grid
+    [pokemons]="pokemons"
+    [favoriteStatus]="favoritesService.favoriteStatus"
+    (cardClick)="onCardClick($event)"
+    (favoriteToggle)="onFavoriteToggle($event)">
+  </app-pokemon-grid>
+
+</ion-content>

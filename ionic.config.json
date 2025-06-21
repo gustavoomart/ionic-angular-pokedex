@@ -1,0 +1,7 @@
+{
+  "name": "ionic-angular-pokedex",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

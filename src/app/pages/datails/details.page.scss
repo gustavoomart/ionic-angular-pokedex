@@ -1,0 +1,51 @@
+.image-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+
+.center-items {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.center-items h2 {
+  margin: 0;
+  line-height: 1;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.sprite-image {
+  max-width: 300px;
+  width: 150px;
+  height: 150px;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.descriptions {
+  padding: 32px;
+}
+
+.favorite-button {
+  --border-radius: 50%;
+  --color: #666;
+  width: 32px;
+  height: 32px;
+
+  &.favorited {
+    --color: #ff0000 !important;
+  }
+
+  ion-icon {
+    font-size: 18px;
+  }
+}

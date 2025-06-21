@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button class="favorite-button" 
+                        [class.favorited]="isFavorite"
+                        (click)="toggleFavorite($event)"
+                fill="clear">
+
+                <ion-icon slot="icon-only"
+                          [name]="isFavorite ? 'heart' : 'heart-outline'">
+                </ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>{{ pokemon.name | kebabToTitle }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-col>
+        <ion-col size="5" class="image-div">
+            <ion-img [src]="sprites[currentIndex]" class="sprite-image"></ion-img>
+
+            <div class="pagination-container">
+                <ion-button (click)="prevImage()" size="small" shape="round">
+                    <ion-icon slot="icon-only" name="caret-back-outline"></ion-icon>
+                </ion-button>
+                <label>
+                    <span>
+                        {{this.currentIndex +1}}
+                    </span>
+                    <span>
+                        /
+                    </span>
+                    <span>
+                        {{this.sprites.length}}
+                    </span>
+                </label>
+                <ion-button (click)="nextImage()" size="small" shape="round">
+                    <ion-icon slot="icon-only" name="caret-forward-outline"></ion-icon>
+                </ion-button>
+            </div>
+        </ion-col>
+
+        <div class="descriptions">
+            <ion-col size="7">
+
+                <div *ngIf="flavourTexts.length == 0">
+                    <ion-row class="center-items">
+                        <h2>Descrições</h2>
+                        <div class="loader" style="margin-left: 20px;"></div>
+                    </ion-row>
+                </div>
+                <div *ngIf="flavourTexts.length > 0">
+                    <h2>Descrições</h2>
+                </div>
+                <div *ngIf="flavourTexts.length > 0">
+                    <div *ngFor="let s of flavourTexts">
+                        <p>• {{ s }}</p>
+                    </div>
+                </div>
+            </ion-col>
+        </div>
+    </ion-col>
+</ion-content>

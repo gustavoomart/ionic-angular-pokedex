@@ -33,7 +33,7 @@ jobs:
     
     - name: Build do projeto Angular
       run: |
-        ng build --configuration production --base-href="/ionic-angular-pokedex/"
+        npm run build -- --base-href="/ionic-angular-pokedex/"
     
     - name: Setup Pages
       uses: actions/configure-pages@v4
